@@ -15,42 +15,29 @@ const TaskList = ({ category }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({});
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://kina-becha-x77q-git-main-omihasan1307s-projects.vercel.app/api/upload');
+        const response = await fetch(
+          "https://kina-becha-x77q-git-main-omihasan1307s-projects.vercel.app/api/upload"
+        );
         const data = await response.json();
-        setModalContent(data); 
+        setModalContent(data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, []); 
-
+  }, []);
 
   const openModal = () => {
-
     setIsModalOpen(true);
   };
 
-  // Function to close the modal
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
-
-//   // Function to open the modal
-//   const openModal = () => {
-//     setIsModalOpen(true);
-//   };
-
-//   // Function to close the modal
-//   const closeModal = () => {
-//     setIsModalOpen(false);
-//   };
 
   return (
     <div className="bg-slate-100 px-2 py-6 rounded-lg">
@@ -100,7 +87,6 @@ const TaskList = ({ category }) => {
               </div>
             </div>
 
-            {/* Task Description */}
             <div className="flex justify-between items-center text-gray-600 text-sm">
               <div className="flex items-center space-x-2 ">
                 <FaAlignRight />
@@ -112,7 +98,6 @@ const TaskList = ({ category }) => {
               </div>
             </div>
 
-            {/* Task Additional Info */}
             <div className="flex justify-between items-center font-semibold text-sm space-x-3">
               <img src={avatar} alt="avatar" className="w-8" />
               <img src={avatar} alt="avatar" className="w-8" />
@@ -138,24 +123,13 @@ const TaskList = ({ category }) => {
           </div>
         ))}
       </div>
-      {isModalOpen &&
-      <Modal isOpen={isModalOpen} closeModal={closeModal} content={modalContent} />
-}
-
-      {/* {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded shadow-md w-1/3">
-            <h3 className="text-lg font-semibold">Modal Content</h3>
-      
-            <button
-              onClick={closeModal}
-              className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )} */}
+      {isModalOpen && (
+        <Modal
+          isOpen={isModalOpen}
+          closeModal={closeModal}
+          content={modalContent}
+        />
+      )}
     </div>
   );
 };

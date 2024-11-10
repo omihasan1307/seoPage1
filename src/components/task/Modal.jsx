@@ -1,4 +1,3 @@
-
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
@@ -14,25 +13,25 @@ const Modal = ({ isOpen, closeModal, content }) => {
       alert("Please select at least one file.");
       return;
     }
-  
+
     const formData = new FormData();
-    
+
     for (let i = 0; i < selectedFiles.length; i++) {
       formData.append("files", selectedFiles[i]);
     }
-  
+
     try {
-      const response = await fetch("https://kina-becha-x77q.vercel.app/api/upload/create-upload", {
-        method: "POST",
-        body: formData,
-      });
-  
+      const response = await fetch(
+        "https://kina-becha-x77q.vercel.app/api/upload/create-upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
       if (response.ok) {
-        // const result = await response.json();
-        // console.log("Files uploaded successfully:", result);
         alert("Files uploaded successfully!");
       } else {
-        // console.error("Error uploading files:", response.statusText);
         alert("Error uploading files.");
       }
     } catch (error) {
@@ -40,8 +39,6 @@ const Modal = ({ isOpen, closeModal, content }) => {
       alert("Something went wrong while uploading.");
     }
   };
-  
-
 
   if (!isOpen) return null;
   return (
@@ -89,7 +86,6 @@ const Modal = ({ isOpen, closeModal, content }) => {
           </div>
         )}
 
-        {/* Close Button */}
         <button
           onClick={closeModal}
           className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
